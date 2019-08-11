@@ -25,6 +25,6 @@ public class UserDTO implements Serializable {
   @JsonProperty(value = "last_name")
   private String lastName;
 
-  @JsonProperty(value = "email")
-  private String email;
+  @JsonProperty(value = "user_name")
+  private String userName;
 }

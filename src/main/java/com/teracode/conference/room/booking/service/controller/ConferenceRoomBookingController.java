@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import com.teracode.conference.room.booking.service.api.ConferenceRoomBookingService;
 import com.teracode.conference.room.booking.service.common.BookingDTO;
 import com.teracode.conference.room.booking.service.common.RoomDTO;
+import com.teracode.conference.room.booking.service.common.UserDTO;
 import com.teracode.conference.room.booking.service.controller.function.BookingFunction;
 import com.teracode.conference.room.booking.service.controller.function.RoomFunction;
 import com.teracode.conference.room.booking.service.controller.util.DateUtils;

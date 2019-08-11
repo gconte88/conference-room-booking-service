@@ -13,6 +13,6 @@ public class UserFunction implements Function<User, UserDTO>{
   public static UserFunction INSTANCE = new UserFunction();
   @Override
   public UserDTO apply(User user) {
-    return new UserDTO(user.getFirstName(), user.getLastName(), user.getEmail());
+    return new UserDTO(user.getFirstName(), user.getLastName(), user.getUserName());
   }
 }

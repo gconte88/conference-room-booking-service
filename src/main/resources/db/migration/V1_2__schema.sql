@@ -2,19 +2,41 @@ CREATE TABLE `USER` (
   `id`         BIGINT(20)   NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
   `last_name`  VARCHAR(255) NOT NULL,
-  `email`      VARCHAR(255) NOT NULL,
+  `user_name`  VARCHAR(255) NOT NULL UNIQUE,
+  `password`  VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
 CREATE INDEX IDX_EMAIL
-  ON `USER` (`email`);
+  ON `USER` (`user_name`);
+
+CREATE TABLE `ROLE` (
+  `id`   BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+INSERT INTO `ROLE` (`id`, `name`) VALUES (1, 'ROLE_USER');
+
+CREATE TABLE `USER_ROLE` (
+  `user_id` BIGINT(20) NOT NULL,
+  `role_id` BIGINT(20) NOT NULL,
+  FOREIGN KEY FK_ROLE_ID (`role_id`) REFERENCES `ROLE` (`id`),
+  FOREIGN KEY FK_USER_ID (`user_id`) REFERENCES `USER` (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 
 CREATE TABLE `ROOM` (
-  `id`         BIGINT(20)   NOT NULL AUTO_INCREMENT,
-  `name`       VARCHAR(255) NOT NULL,
-  `seats`      INT          NOT NULL DEFAULT 10,
+  `id`    BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  `name`  VARCHAR(255) NOT NULL,
+  `seats` INT          NOT NULL DEFAULT 10,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -24,9 +46,9 @@ CREATE INDEX IDX_ROOM_SEATS
   ON `ROOM` (`seats`);
 
 CREATE TABLE `BOOKING` (
-  `id`              BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `start_date`      TIMESTAMP  NOT NULL,
-  `end_date`        TIMESTAMP  NOT NULL,
+  `id`         BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `start_date` TIMESTAMP  NOT NULL,
+  `end_date`   TIMESTAMP  NOT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -49,14 +71,6 @@ CREATE TABLE `USER_BOOKING_RELATION` (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
-
-INSERT INTO `USER` (`id`, `first_name`, `last_name`, `email`)
-VALUES
-  (1, 'David', 'Bowie', 'david@bowie.com');
-
-INSERT INTO `USER` (`id`, `first_name`, `last_name`, `email`)
-VALUES
-  (2, 'Freddy', 'Mercury', 'freddy@mercury.com');
 
 INSERT INTO `ROOM` (`id`, `name`, `seats`)
 VALUES
