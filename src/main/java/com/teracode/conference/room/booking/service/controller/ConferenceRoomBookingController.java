@@ -9,13 +9,13 @@ import javax.annotation.Resource;
 import com.teracode.conference.room.booking.service.api.ConferenceRoomBookingService;
 import com.teracode.conference.room.booking.service.common.BookingDTO;
 import com.teracode.conference.room.booking.service.common.RoomDTO;
-import com.teracode.conference.room.booking.service.common.UserDTO;
 import com.teracode.conference.room.booking.service.controller.function.BookingFunction;
 import com.teracode.conference.room.booking.service.controller.function.RoomFunction;
 import com.teracode.conference.room.booking.service.controller.util.DateUtils;
 import com.teracode.conference.room.booking.service.core.ConferenceRoomBookingBusinessService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -40,19 +40,20 @@ public class ConferenceRoomBookingController implements ConferenceRoomBookingSer
   @GetMapping(value = "/room/{roomId}/bookings")
   @Override
   public Set<BookingDTO> getBookingsOfRoom(@PathVariable long roomId) {
-    log.info("New Request to Bookings of Room with id: {}", roomId);
+    log.info("New Request to GET Bookings of Room with id: {}", roomId);
     return this.conferenceRoomBookingBusinessService.getBookingsOfRoom(roomId).stream().map(BookingFunction.INSTANCE)
         .collect(Collectors.toSet());
   }
 
-  @PostMapping(value = "/room/{roomId}/user/{userId}/book")
+  @PostMapping(value = "/room/{roomId}/book")
   @Override
-  public BookingDTO BookRoom(@PathVariable long roomId, @PathVariable long userId,
+  public BookingDTO BookRoom(@PathVariable long roomId, @RequestParam(value = "date") String date,
       @RequestParam(value = "start_date") String startDate, @RequestParam(value = "end_date") String endDate) {
-    log.info("New Request to Book Room: {}, for user: {}, from:{} to:{}", roomId, userId, startDate, endDate);
+    log.info("New Request to Book Room: {}, for user: {}, from:{} to:{}", roomId, startDate, endDate);
 
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     return BookingFunction.INSTANCE.apply(this.conferenceRoomBookingBusinessService
-        .BookRoom(roomId, userId, DateUtils.formatLocalDateTimeString(startDate),
+        .BookRoom(roomId, "asdasd", DateUtils.formatLocalDateTimeString(startDate),
             DateUtils.formatLocalDateTimeString(endDate)));
   }
 

@@ -45,16 +45,16 @@ public class ConferenceRoomBookingBusinessServiceImpl implements ConferenceRoomB
   }
 
   @Override
-  public Booking BookRoom(long roomId, long userId, LocalDateTime startDate, LocalDateTime endDate) {
+  public Booking BookRoom(long roomId, String userName, LocalDateTime startDate, LocalDateTime endDate) {
 
-    log.info("Creating a new booking for room: {}, user: {} with startDate: {}, and endDate:{}", roomId, userId,
+    log.info("Creating a new booking for room: {}, user: {} with startDate: {}, and endDate:{}", roomId, userName,
         startDate, endDate);
 
     Room room = this.roomRepository.getOne(roomId);
 
     room.validateBooking(startDate, endDate, null);
 
-    User user = this.userRepository.getOne(userId);
+    User user = this.userRepository.findByUserName(userName);
 
     Booking booking = new Booking(startDate, endDate);
     booking.setRoom(room);

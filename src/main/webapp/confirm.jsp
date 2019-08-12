@@ -14,8 +14,6 @@
 <body>
 <div class="container">
     <h2>Congratulations ${pageContext.request.userPrincipal.name}, your room has been reserved. </h2>
-    <%--<div><p>Reservation Date: ${date} Starts: ${start_hour} Ends: ${end_hour}</p></div>--%>
-    <%--<div><p>Thank you for using our booking system.</p></div>--%>
     <section class="options">
         <a class="btn btn-full" href="/welcome" >Back to Start</a>
     </section>

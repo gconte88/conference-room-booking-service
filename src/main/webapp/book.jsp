@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +26,7 @@
 <!-- jQuery -->
 <script>
     $(document).ready(function () {
+
         $.getJSON('/api/v1/booking/rooms/', function (data) {
             var trHTML = '';
             $.each(data, function (i, item) {

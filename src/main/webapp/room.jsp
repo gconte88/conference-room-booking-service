@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -46,7 +47,7 @@
 
         var reservations;
 
-        $.getJSON('http://localhost:8080/api/v1/booking/room/${id}/bookings', function (data) {
+        $.getJSON('http://localhost:8080/api/v1/booking/room/${room_id}/bookings', function (data) {
             reservations = data;
         });
 
@@ -59,6 +60,7 @@
         $('.timepicker').pickatime({
             'interval': 1,
             'min': new Date(),
+            'format': 'h:ia'
         });
 
         $(document).on('change', '#date_start', function (e) {
@@ -100,16 +102,29 @@
 
         $(document).on('click', '.confirm', function () {
 
-//            var date = $('input#date_start').val();
-//            var start_hour = $('input#time_start').val();
-//            var end_hour = $('input#time_end').val();
-            //TODO: send request to service!!
+            var date_start = $('#date_start').val();
+            var time_start = $('#time_start').val();
+            var time_end = $('#time_end').val();
+            var roomId = '${room_id}';
 
-//            $.ajax({
-//                type: "POST",
-                <%--url: "http://localhost:8080/api/v1/booking/room/${id}/user/1/book?date=${date}&start_hour=${start_hour}&end_hour=${end_hour}"--%>
-<%----%>
-//            });
+            var url = "http://localhost:8080/api/v1/booking/room/"+ roomId + "/book";
+
+            $.ajax({
+                url : url,
+                type: "POST",
+                contentType: "application/json",
+                data: {
+                    "start_hour": time_start,
+                    "end_hour": time_end,
+                    "date":date_start
+                },
+                success: function(response){
+                    console.log("sucess");
+                },
+                error:function(response){
+                    console.log("something went wrong");
+                }
+            });
 
             window.location = '/confirm';
         });

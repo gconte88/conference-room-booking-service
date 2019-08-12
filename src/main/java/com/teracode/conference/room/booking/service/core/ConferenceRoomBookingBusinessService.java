@@ -16,7 +16,7 @@ public interface ConferenceRoomBookingBusinessService {
 
   public Set<Booking> getBookingsOfRoom(long roomId);
 
-  public Booking BookRoom(long roomId, long userId, LocalDateTime startDate, LocalDateTime endDate);
+  public Booking BookRoom(long roomId, String userId, LocalDateTime startDate, LocalDateTime endDate);
 
   public Booking editBookingSchedule(long bookingId, LocalDateTime startDate, LocalDateTime endDate);
 

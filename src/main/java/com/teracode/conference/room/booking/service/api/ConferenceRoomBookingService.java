@@ -23,12 +23,12 @@ public interface ConferenceRoomBookingService {
 
   /**
    * @param roomId
-   * @param userId
+   * @param date
    * @param startDate
    * @param endDate
    * @return {@link BookingDTO} with the book of the room
    */
-  BookingDTO BookRoom(long roomId, long userId, String startDate, String endDate);
+  BookingDTO BookRoom(long roomId, String date, String startDate, String endDate);
 
   /**
    * @param bookingId
