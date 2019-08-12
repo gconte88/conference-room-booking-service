@@ -21,4 +21,9 @@ public class ConferenceRoomBookingViewController {
     model.addAttribute("id", id);
     return "room";
   }
+
+  @GetMapping(value = "/confirm")
+  public String confirm(Model model) {
+    return "confirm";
+  }
 }

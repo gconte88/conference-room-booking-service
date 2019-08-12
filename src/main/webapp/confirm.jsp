@@ -13,16 +13,11 @@
 </head>
 <body>
 <div class="container">
-    <h2>Welcome ${pageContext.request.userPrincipal.name} </h2>
+    <h2>Congratulations ${pageContext.request.userPrincipal.name}, your room has been reserved. </h2>
+    <%--<div><p>Reservation Date: ${date} Starts: ${start_hour} Ends: ${end_hour}</p></div>--%>
+    <%--<div><p>Thank you for using our booking system.</p></div>--%>
     <section class="options">
-        <a href="${contextPath}/book" class="btn btn-full">Book</a>
-        <a href="#" class="btn btn-full">My Bookings</a>
-
-
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-        <a class="btn btn-full" href="#" onclick="document.forms['logoutForm'].submit()">Logout</a>
+        <a class="btn btn-full" href="/welcome" >Back to Start</a>
     </section>
 </div>
 

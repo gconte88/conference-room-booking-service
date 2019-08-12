@@ -2,6 +2,8 @@ package com.teracode.conference.room.booking.service.common;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -29,10 +31,10 @@ public class BookingDTO implements Serializable{
   @JsonProperty(value = "user")
   private UserDTO user;
 
-  @JsonProperty(value = "start_date")
-  private LocalDateTime startDate;
+  @JsonProperty(value = "reserved_minutes")
+  private List<String> reservedMinutes;
 
-  @JsonProperty(value = "end_date")
-  private LocalDateTime endDate;
+  @JsonProperty(value = "reserved_date")
+  private String reservedDate;
 
 }

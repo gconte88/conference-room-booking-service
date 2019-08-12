@@ -16,20 +16,22 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<h2>Select room to book in</h2>
 <div id="container">
 
 </div>
+<a class="btn btn-full-tiny center-text" href="javascript:history.back()">Go Back</a>
 
 <!-- jQuery -->
 <script>
-    $(function(){
-        $.getJSON('/api/v1/booking/rooms/', function(data) {
+    $(document).ready(function () {
+        $.getJSON('/api/v1/booking/rooms/', function (data) {
             var trHTML = '';
             $.each(data, function (i, item) {
                 trHTML +=
                     '<div>' +
-                    '<a class="btn btn-full" href="${contextPath}/room/' + item.id +'">' +
-                    'Room Name:' + item.name  +' Seats:' + item.seats + '</a>' +
+                    '<a class="btn btn-full" href="${contextPath}/room/' + item.id + '">' +
+                    'Room Name:' + item.name + ' Seats:' + item.seats + '</a>' +
                     '</div>';
             });
             $('#container').append(trHTML);

@@ -16,17 +16,9 @@ There is a postman_collection.json with the available endpoints.
 
 [POSTMAN](https://www.getpostman.com/downloads/)
 
-Ive added a few users/rooms via SQL: (TODO: creation methods)
 
+Rooms are already inserted into the db (missing creation method).
 ```
-INSERT INTO `USER` (`id`, `first_name`, `last_name`, `email`)
-VALUES
-  (1, 'David', 'Bowie', 'david@bowie.com');
-
-INSERT INTO `USER` (`id`, `first_name`, `last_name`, `email`)
-VALUES
-  (2, 'Freddy', 'Mercury', 'freddy@mercury.com');
-
 INSERT INTO `ROOM` (`id`, `name`, `seats`)
 VALUES
   (1, 'Room1', 10);
@@ -43,6 +35,8 @@ INSERT INTO `ROOM` (`id`, `name`, `seats`)
 VALUES
   (4, 'Room4', 100);
 ```
+Users can be created, sadly, there is a bug currently in the application
+that once an user is logged out, it cannot login again.
 
 ## Questionnaire
 
@@ -88,3 +82,5 @@ Diagram-4
     }
   }
 ```
+
+There is also a validation in the front-end (JSP) that disables the already reserved dates of the time pickers.

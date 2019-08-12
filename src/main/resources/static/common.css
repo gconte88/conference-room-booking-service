@@ -27,10 +27,12 @@ html {
     height: 0;
     visibility: hidden;
 }
+
 /* HEADINGS  */
-h1,h2,h3 {
+h1, h2, h3 {
     font-weight: 300;
     text-transform: uppercase;
+    text-align: center;
 }
 
 /* FORMS */
@@ -77,7 +79,6 @@ h1,h2,h3 {
     color: red
 }
 
-
 /* BOOKING BUTTONS  */
 .btn:link,
 .btn:visited {
@@ -99,10 +100,27 @@ h1,h2,h3 {
     margin-top: 10px;
 }
 
+.btn-full-tiny:link,
+.btn-full-tiny:visited {
+    display: table;
+    background-color: #1c6dcc;
+    border: 1px solid #1c6dcc;
+    color: #fff;
+    margin-left: 40%;
+    width: 20%;
+    margin-top: 10px;
+}
+
 .btn:hover,
 .btn:active {
     display: table;
     background-color: #450e7c;
+}
+
+.btn-full-tiny:hover,
+.btn-full-tiny:active {
+    display: table;
+    border: 1px solid #1c6dcc;
 }
 
 .btn-full:hover,
@@ -111,9 +129,16 @@ h1,h2,h3 {
     border: 1px solid #1c6dcc;
 }
 
-.welcome-header {
+/*
+ UTILS
+ */
+
+.center-text {
     text-align: center;
 }
 
-
+.ui-timepicker-disabled {
+    pointer-events: none;
+    opacity:0.4;
+}
 
